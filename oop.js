@@ -1,43 +1,53 @@
 /*
-    Defining Object
-    [1] Object Literal
-    [2] with new keyword
-    [3] with object.create()
-    [4] with object.assign
+    Delete Operator
 */
 
-const src1 = {
-    prop1: "value1",
-    prop2: "value2",
+const user = { name: "Ahmed"};
 
-    method1: function () {
-        return `method1`;
-    }
-}
+console.log(user);
+console.log(user.name);
 
-const src2 = {
-    prop3: "value3",
-    prop4: "value4",
+console.log(delete user);  // can't delete because it is const
+console.log(delete user.name);  // will return true because it is accepted to be deleted 
+// console.log(delete user["name"]); this is accepted syntax also
 
-    method2: function () {
-        return `method2`;
-    }
-}
+console.log(user); // Now this object will be empty
+console.log(user.name);
 
-const target = {
-    prop5: "value5"
-}
+console.log("#".repeat(30));
 
-Object.assign(target, src1, src2, { prop6: "value6"});
+const username = "Ahmed";
 
-console.log(target);
+console.log(username);
+console.log(delete username);  // can't be deleted, so will return false
+console.log(username);
 
-myObj = Object.assign({}, target, { prop7: "value7" });
+console.log("#".repeat(30));
 
-console.log(myObj);
+const obj = Object.freeze( {prop: "value"} );  // No properties can be deleted or added to this object
 
-console.log(myObj.prop1);
-console.log(myObj.prop3);
-console.log(myObj.prop5);
-console.log(myObj.method1());
-console.log(myObj.method2());
+console.log(obj);
+console.log(obj.prop);
+console.log(delete obj.prop);  // can't be deleted because the object is freezed
+console.log(obj);
+console.log(obj.prop);
+
+console.log("#".repeat(30));
+
+const emptyObj = {};
+Object.defineProperty(emptyObj, "a", { value: 1, configurable: false });
+Object.defineProperty(emptyObj, "b", { value: 2, configurable: true });
+
+console.log(emptyObj);
+console.log(emptyObj.a);
+console.log(delete emptyObj.a);  // can't be deleted because configurable is false
+console.log(emptyObj);
+console.log(emptyObj.a);
+
+console.log("#".repeat(30));
+
+console.log(emptyObj);
+console.log(emptyObj.b);
+console.log(delete emptyObj.b);  // can't be deleted because configurable is true
+console.log(emptyObj);
+console.log(emptyObj.b);
