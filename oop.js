@@ -3,40 +3,41 @@
     [1] Object Literal
     [2] with new keyword
     [3] with object.create()
+    [4] with object.assign
 */
 
-let mainObj = {
-    hasDiscount: true,
+const src1 = {
+    prop1: "value1",
+    prop2: "value2",
 
-    showMsg: function () {
-        return `You${mainObj.hasDiscount? "" : " don't"} have Discount`;
+    method1: function () {
+        return `method1`;
     }
 }
 
-console.log(mainObj.hasDiscount);  // true
-console.log(mainObj.showMsg());  // You have Discount
+const src2 = {
+    prop3: "value3",
+    prop4: "value4",
 
-otherObj = Object.create(mainObj);  // establish as instantiation from object
-
-otherObj.hasDiscount = false;  // modify value for property of object
-
-console.log(otherObj.hasDiscount);  // false
-console.log(otherObj.showMsg());  // you have Discount, although we had changed the value of property
-
-let firstObj = {
-    hasDiscount: true,
-
-    showMsg: function () {
-        return `You${this.hasDiscount? "" : " don't"} have Discount`;
+    method2: function () {
+        return `method2`;
     }
 }
 
-console.log(firstObj.hasDiscount);  // true
-console.log(firstObj.showMsg());  // You have Discount
+const target = {
+    prop5: "value5"
+}
 
-secondObj = Object.create(firstObj);  // establish as instantiation from object
+Object.assign(target, src1, src2, { prop6: "value6"});
 
-secondObj.hasDiscount = false;  // modify value for property of object
+console.log(target);
 
-console.log(secondObj.hasDiscount);  // false
-console.log(secondObj.showMsg());  // you don't have Discount
+myObj = Object.assign({}, target, { prop7: "value7" });
+
+console.log(myObj);
+
+console.log(myObj.prop1);
+console.log(myObj.prop3);
+console.log(myObj.prop5);
+console.log(myObj.method1());
+console.log(myObj.method2());
