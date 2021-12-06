@@ -1,30 +1,23 @@
 /*
-    Constructor Function
-    Dealing with properties
+    Built in constructors
 */
 
-function User (fName, lName, age, country) {
-    this.fName = fName;
-    this.lName = lName;
-    this.age = age;
-    this.country = country;
+let obj = {  // object created from built-in constructor named object, and declared by { }
+    a: 1
+};
 
-    this.fullName = function() {
-        return `Full Name: ${this.fName} ${this.lName}`;
-    }
-
-    this.ageInDays = function() {
-        return `Age in Days: ${this.age * 365}`;
+function User (name) {
+    this.name = name,
+    this.welcome = function () {
+        return `Welcome ${this.name}`
     }
 }
 
-let user1 = new User("Ahmed", "Sabry", 28, "Egypt");
-let user2 = new User("Ahmed", "Ali", 30, "Ksa");
+let user1 = new User("Ahmed");  // object from created constructor named User
+let user2 = new User("Ali");
 
-console.log(user1);
-console.log(user1.fullName());
-console.log(user1.ageInDays());
+let num1 = new Number(1);  // object from built-in constructor named Number
+let num2 = new Number(2);
 
-console.log(user2);
-console.log(user2.fullName());
-console.log(user2.ageInDays());
+let arg1 = new Argument(1);  // error, there is any constructor named argument
+let arg2 = new Argument(2);
